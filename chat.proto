@@ -1,0 +1,21 @@
+syntax = "proto3";
+package chat;
+
+option go_package = ".;chat";
+message Message {
+  string body = 1;
+}
+
+service ChatService {
+  rpc SayHello(Message) returns (Message) {}
+}
+
+// dep commands
+
+// protoc --go_out=$(go env GOPATH)/src/Hello chat.proto
+// protoc --go_out=chat chat.proto
+// protoc --go_out=import_path=${pkg},plugins=grpc:. chat.proto
+// protoc chat.proto --go-grpc_out=$(go env GOPATH)/src/Hello --plugin=$(go env GOPATH)/bin/protoc-gen-go-grpc
+
+
+
